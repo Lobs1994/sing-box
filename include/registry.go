@@ -40,6 +40,7 @@ import (
 	"github.com/sagernet/sing-box/service/resolved"
 	"github.com/sagernet/sing-box/service/ssmapi"
 	E "github.com/sagernet/sing/common/exceptions"
+	"github.com/sagernet/sing-box/outbound/loadbalance"
 )
 
 func Context(ctx context.Context) context.Context {
@@ -82,6 +83,7 @@ func OutboundRegistry() *outbound.Registry {
 
 	group.RegisterSelector(registry)
 	group.RegisterURLTest(registry)
+	loadbalance.RegisterOutbound(registry)
 
 	socks.RegisterOutbound(registry)
 	http.RegisterOutbound(registry)
